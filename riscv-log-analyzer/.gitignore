@@ -1,0 +1,12 @@
+# Ignore generated reports
+output/
+*.txt
+*.csv
+*.html
+
+# OS and Editor specific files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*~
