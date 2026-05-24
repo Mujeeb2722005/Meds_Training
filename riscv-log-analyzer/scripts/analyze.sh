@@ -40,7 +40,7 @@ if [[ $# -eq 0 ]]; then
     exit 1
 fi
 
-# Manual argument parsing loop to cleanly capture arguments alongside positional parameters
+# Manual argument parsing loop to cleanly capture arguments alongside positional parameters and help in changes
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --help)

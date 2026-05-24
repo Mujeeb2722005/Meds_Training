@@ -26,3 +26,8 @@ riscv-log-analyzer/
 ├── output/                 # Destination directory for generated txt/csv dumps (Gitignored)
 └── docs/
     └── USAGE.md            # Comprehensive user operation manual and flags documentation
+```
+
+---
+### Installation
+Clone the workspace repository and navigate to the project directory.
