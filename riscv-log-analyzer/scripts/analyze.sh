@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# Bash configuration for robust error handling
-# -e: Exit immediately if a command exits with a non-zero status
-# -u: Treat unset variables as an error
-# -o pipefail: Pipeline exit status is that of the last command to fail
 set -euo pipefail
 
 # --- Default State Initialization ---
