@@ -1,11 +1,12 @@
 # Ignore generated reports
+# Ignore local python cache environments
 output/
 *.txt
 *.csv
 *.html
 
 # OS and Editor specific files
-.DS_Store
+
 .vscode/
 .idea/
 *.swp
