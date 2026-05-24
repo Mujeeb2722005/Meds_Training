@@ -27,8 +27,3 @@ riscv-log-analyzer/
 └── docs/
     └── USAGE.md            # Comprehensive user operation manual and flags documentation
 ```
-### add the following features
-a
-b
-c
-d
