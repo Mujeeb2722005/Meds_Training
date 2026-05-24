@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# Bash configuration for robust error handling
-# -e: Exit immediately if a command exits with a non-zero status
-# -u: Treat unset variables as an error
-# -o pipefail: Pipeline exit status is that of the last command to fail
 set -euo pipefail
 
 # --- Default State Initialization ---
@@ -44,7 +40,7 @@ if [[ $# -eq 0 ]]; then
     exit 1
 fi
 
-# Manual argument parsing loop to cleanly capture arguments alongside positional parameters
+# Manual argument parsing loop to cleanly capture arguments alongside positional parameters and help in changes
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --help)
