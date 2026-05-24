@@ -33,14 +33,14 @@ log_verbose() {
 }
 
 # --- Parameter Parsing Logic ---
-# Ensure we have at least one valid input parameter
+# Ensure we have at least one valid input parameter and help to check ___
 if [[ $# -eq 0 ]]; then
     echo "Error: Missing arguments." >&2
     print_usage
     exit 1
 fi
 
-# Manual argument parsing loop to cleanly capture arguments alongside positional parameters
+# Manual argument parsing loop to cleanly capture arguments alongside positional parameters and help in changes
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --help)
