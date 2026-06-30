@@ -22,5 +22,6 @@ typedef struct {
 
 // Prototype for the decoder function
 void decode_instruction(uint32_t raw_instruction, decoded_instr_t *out);
-
+void get_mnemonic(decoded_instr_t *instr, char *buffer);
+int32_t sign_extend(uint32_t val, int bit_width);
 #endif // DECODER_H

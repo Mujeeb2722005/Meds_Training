@@ -2,6 +2,11 @@
 #include <stdio.h>
 #include <string.h>
 
+int32_t sign_extend(uint32_t val, int bit_width) {
+    uint32_t sign_bit = 1U << (bit_width - 1);
+    return (int32_t)((val ^ sign_bit) - sign_bit);
+}
+
 // Decode the 32-bit instruction into a struct [cite: 72, 1145]
 void decode_instruction(uint32_t raw_instruction, decoded_instr_t *out) {
     out->opcode = EXTRACT_BITS(raw_instruction, 6, 0);
@@ -14,7 +19,7 @@ void decode_instruction(uint32_t raw_instruction, decoded_instr_t *out) {
     // Sign-extend immediate based on instruction type 
     // Simplified logic provided here; expand for all types
     if (out->opcode == OP_I_TYPE) {
-        out->imm = (int32_t)(raw_instruction >> 20); 
+        out->imm = sign_extend(EXTRACT_BITS(raw_instruction, 31, 20), 12);
     } else {
         out->imm = 0;
     }
