@@ -3,6 +3,13 @@
 
 #include <stdint.h>
 #include "common.h"
+typedef enum {
+    OP_R_TYPE = 0x33, OP_I_TYPE = 0x13, OP_LOAD = 0x03,
+    OP_STORE = 0x23, OP_BRANCH = 0x63, OP_LUI = 0x37,
+    OP_AUIPC = 0x17, OP_JAL = 0x6F, OP_JALR = 0x67
+} opcode_t;
+
+// Use the struct provided in the training manual [cite: 472]
 typedef struct {
     uint32_t opcode;
     uint32_t rd;
