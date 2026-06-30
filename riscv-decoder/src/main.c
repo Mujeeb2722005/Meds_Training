@@ -38,9 +38,15 @@ int main(int argc, char *argv[]) {
             if (strcmp(mnemonic, "UNKNOWN") == 0) {
                 printf("0x%08X: %08X  UNKNOWN\n", i * 4, raw);
             } else {
-                // Printing Assembly format 
-                printf("0x%08X: %08X  %-7s  x%u, x%u, %d\n", 
-                       i * 4, raw, mnemonic, decoded.rd, decoded.rs1, decoded.imm);
+                if (decoded.opcode == OP_R_TYPE) {
+                    // Printing R-type Assembly format: mnemonic rd, rs1, rs2 [cite: 1277]
+                    printf("0x%08X: %08X  %-7s  x%u, x%u, x%u\n", 
+                           i * 4, raw, mnemonic, decoded.rd, decoded.rs1, decoded.rs2);
+                } else {
+                    // Printing I/S/B/U/J-type Assembly format: mnemonic rd, rs1, imm [cite: 1278, 1279]
+                    printf("0x%08X: %08X  %-7s  x%u, x%u, %d\n", 
+                           i * 4, raw, mnemonic, decoded.rd, decoded.rs1, decoded.imm);
+                }
             }
         }
     } else {
