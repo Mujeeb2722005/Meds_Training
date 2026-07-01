@@ -38,7 +38,12 @@ release: CFLAGS += -O2 -DNDEBUG
 release: all
 
 test: all
-	./$(TARGET) test/test_programs/add.hex
+	@echo "Running all tests..."
+	@for file in test/test_programs/*.hex; do \
+		echo "Testing $$file:"; \
+		./$(TARGET) $$file; \
+		echo "-----------------------------------"; \
+	done
 
 valgrind: all
 	valgrind --leak-check=full ./$(TARGET) test/test_programs/add.hex
