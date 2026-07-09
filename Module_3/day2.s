@@ -14,3 +14,38 @@ main:
     addi a0, zero, 10  
     ecall
    
+
+
+# task 4
+.data
+my_array: .word 10,20,-29,40,50
+
+.text 
+.globl main 
+main: 
+    la s0,my_array
+    li s1,5
+    li t0, 0
+    lw s2, 0(s0)
+    loop:
+        bge t0,s1,done
+        slli t1,t0,2
+        add t2,s0,t1
+        lw t3,0(t2)
+        ble t3,s2,skip
+           
+    max:
+        mv s2,t3
+    skip:
+        addi t0,t0,1
+        j loop 
+    done:
+        addi a0,zero,1
+         mv a1,s2
+        ecall
+    
+        addi a0, zero, 10  
+        ecall
+    
+   
+   
