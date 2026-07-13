@@ -68,7 +68,43 @@ main:
     addi a7, zero, 10
     ecall
    
+# task 3
 
+.data
+
+my_array: .word 10, 20, 30, 40, 50, 60, 70, 80
+msg:      .string "The sum of the array is: "
+
+.text
+.globl main
+
+main:
+
+    li t0, 8            # t0 = Loop counter (we have 8 elements)
+    li t1, 0            # t1 = Running sum (start at 0)
+    la t2, my_array     # t2 = Base address (pointer to the start of the array)
+
+loop:
+    lw t3, 0(t2)        # Load the current word from memory at address t2 into t3
+    add t1, t1, t3      # Add the loaded value (t3) to our running sum (t1)
+
+    addi t2, t2, 4      # Move the memory pointer forward by 4 bytes to the next word
+    addi t0, t0, -1     # Decrement our loop counter by 1
+
+    bne t0, zero, loop  # If the counter is not zero, jump back to 'loop'
+
+   
+    la a0, msg
+    li a7, 4            # ecall 4 is print string
+    ecall
+
+
+    mv a0, t1           # Move the final sum from t1 into a0
+    li a7, 1            # ecall 1 is print integer
+    ecall
+
+    li a7, 10
+    ecall
 
 # task 4
 .data
@@ -102,4 +138,69 @@ main:
         ecall
     
    
-   
+# task 5
+
+.data
+
+magic_num: .word 0xDEADBEEF
+
+
+msg_w:  .string "Loaded as Word:      0x"
+msg_h0: .string "\nHalf-word (offset 0): 0x"
+msg_h2: .string "\nHalf-word (offset 2): 0x"
+msg_b0: .string "\nByte (offset 0):      0x"
+msg_nl: .string "\n"
+
+.text
+.globl main
+
+main:
+  
+    la t0, magic_num
+
+    lw t1, 0(t0)        # Loads all 4 bytes
+
+    la a0, msg_w
+    li a7, 4
+    ecall
+    mv a0, t1
+    li a7, 34           # Print in Hex
+    ecall
+
+
+    lhu t2, 0(t0)       # Loads 2 bytes from offset 0
+                        # Uses 'lhu' (unsigned) to prevent sign extension
+
+    la a0, msg_h0
+    li a7, 4
+    ecall
+    mv a0, t2
+    li a7, 34
+    ecall
+
+  
+    lhu t3, 2(t0)       # Loads 2 bytes skipping the first 2 bytes
+
+    la a0, msg_h2
+    li a7, 4
+    ecall
+    mv a0, t3
+    li a7, 34
+    ecall
+
+
+    lbu t4, 0(t0)       # Loads the single lowest byte from memory
+
+    la a0, msg_b0
+    li a7, 4
+    ecall
+    mv a0, t4
+    li a7, 34
+    ecall
+
+    la a0, msg_nl
+    li a7, 4
+    ecall
+
+    li a7, 10
+    ecall
