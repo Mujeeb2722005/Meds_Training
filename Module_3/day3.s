@@ -39,6 +39,8 @@ exit:
 
 
 # task 2
+
+
 .data 
 nonnegative: .string "the factoral is always of non-negative values"
 
