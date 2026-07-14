@@ -1,0 +1,16 @@
+# OS-specific files
+.DS_Store
+Thumbs.db
+db.properties
+
+# Editor and IDE configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local simulator artifacts / backups (if running Venus locally or using RARS)
+*.class
+*.jar
+.rars
+.venus/
