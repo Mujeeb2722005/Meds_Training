@@ -1,0 +1,263 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2009.vpi";
+S_0x55ac5f273e70 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0x55ac5f274000 .scope module, "tb" "tb" 3 2;
+ .timescale 0 0;
+v0x55ac5f29ec70_0 .var "a", 0 0;
+v0x55ac5f29ed30_0 .var/2s "ab", 31 0;
+v0x55ac5f29ee10_0 .var/2s "abc", 31 0;
+v0x55ac5f29eed0_0 .var "b", 0 0;
+v0x55ac5f29ef70_0 .net "carry_always", 0 0, v0x55ac5f29e4c0_0;  1 drivers
+v0x55ac5f29f010_0 .net "carry_assign", 0 0, L_0x55ac5f29f580;  1 drivers
+v0x55ac5f29f0e0_0 .var "cin", 0 0;
+v0x55ac5f29f180_0 .net "fa_cout", 0 0, L_0x55ac5f29f8d0;  1 drivers
+v0x55ac5f29f220_0 .net "fa_sum", 0 0, L_0x55ac5f29f790;  1 drivers
+v0x55ac5f29f350_0 .net "sum_always", 0 0, v0x55ac5f29e560_0;  1 drivers
+v0x55ac5f29f3f0_0 .net "sum_assign", 0 0, L_0x55ac5f29f4c0;  1 drivers
+S_0x55ac5f279c70 .scope autotask, "check" "check" 3 32, 3 32 0, S_0x55ac5f274000;
+ .timescale 0 0;
+v0x55ac5f279e00_0 .var "actual", 0 0;
+v0x55ac5f29ca20_0 .var "expected", 0 0;
+v0x55ac5f29cae0_0 .var/str "name";
+TD_tb.check ;
+    %load/vec4 v0x55ac5f279e00_0;
+    %load/vec4 v0x55ac5f29ca20_0;
+    %cmp/ne;
+    %jmp/0xz  T_0.0, 6;
+    %vpi_call/w 3 34 "$display", "[FAIL] %s: expected=%0b actual=%0b", v0x55ac5f29cae0_0, v0x55ac5f29ca20_0, v0x55ac5f279e00_0 {0 0 0};
+    %jmp T_0.1;
+T_0.0 ;
+    %vpi_call/w 3 36 "$display", "[PASS] %s: value=%0b", v0x55ac5f29cae0_0, v0x55ac5f279e00_0 {0 0 0};
+T_0.1 ;
+    %end;
+S_0x55ac5f29cb80 .scope module, "dut_fa" "full_adder" 3 27, 4 36 0, S_0x55ac5f274000;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /INPUT 1 "cin";
+    .port_info 3 /OUTPUT 1 "sum";
+    .port_info 4 /OUTPUT 1 "cout";
+L_0x55ac5f29f8d0 .functor OR 1, L_0x55ac5f29f6b0, L_0x55ac5f29f840, C4<0>, C4<0>;
+v0x55ac5f29d970_0 .net "a", 0 0, v0x55ac5f29ec70_0;  1 drivers
+v0x55ac5f29da30_0 .net "b", 0 0, v0x55ac5f29eed0_0;  1 drivers
+v0x55ac5f29db00_0 .net "cin", 0 0, v0x55ac5f29f0e0_0;  1 drivers
+v0x55ac5f29dc00_0 .net "cout", 0 0, L_0x55ac5f29f8d0;  alias, 1 drivers
+v0x55ac5f29dca0_0 .net "ha1_carry", 0 0, L_0x55ac5f29f6b0;  1 drivers
+v0x55ac5f29dd90_0 .net "ha1_sum", 0 0, L_0x55ac5f29f640;  1 drivers
+v0x55ac5f29de80_0 .net "ha2_carry", 0 0, L_0x55ac5f29f840;  1 drivers
+v0x55ac5f29df20_0 .net "sum", 0 0, L_0x55ac5f29f790;  alias, 1 drivers
+S_0x55ac5f29cd80 .scope module, "ha1" "half_adder_assign" 4 48, 4 4 0, S_0x55ac5f29cb80;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "sum";
+    .port_info 3 /OUTPUT 1 "carry";
+L_0x55ac5f29f640 .functor XOR 1, v0x55ac5f29ec70_0, v0x55ac5f29eed0_0, C4<0>, C4<0>;
+L_0x55ac5f29f6b0 .functor AND 1, v0x55ac5f29ec70_0, v0x55ac5f29eed0_0, C4<1>, C4<1>;
+v0x55ac5f29cfd0_0 .net "a", 0 0, v0x55ac5f29ec70_0;  alias, 1 drivers
+v0x55ac5f29d0b0_0 .net "b", 0 0, v0x55ac5f29eed0_0;  alias, 1 drivers
+v0x55ac5f29d170_0 .net "carry", 0 0, L_0x55ac5f29f6b0;  alias, 1 drivers
+v0x55ac5f29d210_0 .net "sum", 0 0, L_0x55ac5f29f640;  alias, 1 drivers
+S_0x55ac5f29d350 .scope module, "ha2" "half_adder_assign" 4 56, 4 4 0, S_0x55ac5f29cb80;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "sum";
+    .port_info 3 /OUTPUT 1 "carry";
+L_0x55ac5f29f790 .functor XOR 1, L_0x55ac5f29f640, v0x55ac5f29f0e0_0, C4<0>, C4<0>;
+L_0x55ac5f29f840 .functor AND 1, L_0x55ac5f29f640, v0x55ac5f29f0e0_0, C4<1>, C4<1>;
+v0x55ac5f29d5c0_0 .net "a", 0 0, L_0x55ac5f29f640;  alias, 1 drivers
+v0x55ac5f29d690_0 .net "b", 0 0, v0x55ac5f29f0e0_0;  alias, 1 drivers
+v0x55ac5f29d730_0 .net "carry", 0 0, L_0x55ac5f29f840;  alias, 1 drivers
+v0x55ac5f29d800_0 .net "sum", 0 0, L_0x55ac5f29f790;  alias, 1 drivers
+S_0x55ac5f29e020 .scope module, "dut_ha_always" "half_adder_always" 3 22, 4 16 0, S_0x55ac5f274000;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "sum";
+    .port_info 3 /OUTPUT 1 "carry";
+v0x55ac5f29e2c0_0 .net "a", 0 0, v0x55ac5f29ec70_0;  alias, 1 drivers
+v0x55ac5f29e3b0_0 .net "b", 0 0, v0x55ac5f29eed0_0;  alias, 1 drivers
+v0x55ac5f29e4c0_0 .var "carry", 0 0;
+v0x55ac5f29e560_0 .var "sum", 0 0;
+E_0x55ac5f278900 .event anyedge, v0x55ac5f29cfd0_0, v0x55ac5f29d0b0_0;
+S_0x55ac5f29e680 .scope module, "dut_ha_assign" "half_adder_assign" 3 17, 4 4 0, S_0x55ac5f274000;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "sum";
+    .port_info 3 /OUTPUT 1 "carry";
+L_0x55ac5f29f4c0 .functor XOR 1, v0x55ac5f29ec70_0, v0x55ac5f29eed0_0, C4<0>, C4<0>;
+L_0x55ac5f29f580 .functor AND 1, v0x55ac5f29ec70_0, v0x55ac5f29eed0_0, C4<1>, C4<1>;
+v0x55ac5f29e8d0_0 .net "a", 0 0, v0x55ac5f29ec70_0;  alias, 1 drivers
+v0x55ac5f29e990_0 .net "b", 0 0, v0x55ac5f29eed0_0;  alias, 1 drivers
+v0x55ac5f29ea50_0 .net "carry", 0 0, L_0x55ac5f29f580;  alias, 1 drivers
+v0x55ac5f29eb20_0 .net "sum", 0 0, L_0x55ac5f29f4c0;  alias, 1 drivers
+    .scope S_0x55ac5f29e020;
+T_1 ;
+Ewait_0 .event/or E_0x55ac5f278900, E_0x0;
+    %wait Ewait_0;
+    %load/vec4 v0x55ac5f29e2c0_0;
+    %load/vec4 v0x55ac5f29e3b0_0;
+    %concat/vec4; draw_concat_vec4
+    %dup/vec4;
+    %pushi/vec4 0, 0, 2;
+    %cmp/u;
+    %jmp/1 T_1.0, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 2;
+    %cmp/u;
+    %jmp/1 T_1.1, 6;
+    %dup/vec4;
+    %pushi/vec4 2, 0, 2;
+    %cmp/u;
+    %jmp/1 T_1.2, 6;
+    %dup/vec4;
+    %pushi/vec4 3, 0, 2;
+    %cmp/u;
+    %jmp/1 T_1.3, 6;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55ac5f29e560_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55ac5f29e4c0_0, 0, 1;
+    %jmp T_1.5;
+T_1.0 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55ac5f29e560_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55ac5f29e4c0_0, 0, 1;
+    %jmp T_1.5;
+T_1.1 ;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x55ac5f29e560_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55ac5f29e4c0_0, 0, 1;
+    %jmp T_1.5;
+T_1.2 ;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x55ac5f29e560_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55ac5f29e4c0_0, 0, 1;
+    %jmp T_1.5;
+T_1.3 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55ac5f29e560_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x55ac5f29e4c0_0, 0, 1;
+    %jmp T_1.5;
+T_1.5 ;
+    %pop/vec4 1;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_0x55ac5f274000;
+T_2 ;
+    %vpi_call/w 3 40 "$dumpfile", "dump.vcd" {0 0 0};
+    %vpi_call/w 3 41 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x55ac5f274000 {0 0 0};
+    %vpi_call/w 3 43 "$display", "--- Testing Half Adders (assign vs always_comb) ---" {0 0 0};
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x55ac5f29ed30_0, 0, 32;
+T_2.0 ;
+    %load/vec4 v0x55ac5f29ed30_0;
+    %cmpi/s 3, 0, 32;
+    %flag_or 5, 4;
+    %jmp/0xz T_2.1, 5;
+    %load/vec4 v0x55ac5f29ed30_0;
+    %pad/s 2;
+    %split/vec4 1;
+    %store/vec4 v0x55ac5f29eed0_0, 0, 1;
+    %store/vec4 v0x55ac5f29ec70_0, 0, 1;
+    %delay 10, 0;
+    %load/vec4 v0x55ac5f29f3f0_0;
+    %load/vec4 v0x55ac5f29f010_0;
+    %concat/vec4; draw_concat_vec4
+    %load/vec4 v0x55ac5f29f350_0;
+    %load/vec4 v0x55ac5f29ef70_0;
+    %concat/vec4; draw_concat_vec4
+    %cmp/e;
+    %jmp/0xz  T_2.2, 6;
+    %vpi_call/w 3 51 "$display", "[PASS] HA Match for a=%0b, b=%0b -> sum=%0b, carry=%0b", v0x55ac5f29ec70_0, v0x55ac5f29eed0_0, v0x55ac5f29f3f0_0, v0x55ac5f29f010_0 {0 0 0};
+    %jmp T_2.3;
+T_2.2 ;
+    %vpi_call/w 3 54 "$display", "[FAIL] HA Mismatch for a=%0b, b=%0b!", v0x55ac5f29ec70_0, v0x55ac5f29eed0_0 {0 0 0};
+T_2.3 ;
+    %load/vec4 v0x55ac5f29ed30_0;
+    %addi 1, 0, 32;
+    %cast2;
+    %store/vec4 v0x55ac5f29ed30_0, 0, 32;
+    %jmp T_2.0;
+T_2.1 ;
+    %vpi_call/w 3 57 "$display", "\012--- Testing Full Adder (Structural Composition) ---" {0 0 0};
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x55ac5f29ee10_0, 0, 32;
+T_2.4 ;
+    %load/vec4 v0x55ac5f29ee10_0;
+    %cmpi/s 7, 0, 32;
+    %flag_or 5, 4;
+    %jmp/0xz T_2.5, 5;
+    %load/vec4 v0x55ac5f29ee10_0;
+    %pad/s 3;
+    %split/vec4 1;
+    %store/vec4 v0x55ac5f29f0e0_0, 0, 1;
+    %split/vec4 1;
+    %store/vec4 v0x55ac5f29eed0_0, 0, 1;
+    %store/vec4 v0x55ac5f29ec70_0, 0, 1;
+    %delay 10, 0;
+    %alloc S_0x55ac5f279c70;
+    %load/vec4 v0x55ac5f29f220_0;
+    %store/vec4 v0x55ac5f279e00_0, 0, 1;
+    %load/vec4 v0x55ac5f29ec70_0;
+    %load/vec4 v0x55ac5f29eed0_0;
+    %xor;
+    %load/vec4 v0x55ac5f29f0e0_0;
+    %xor;
+    %store/vec4 v0x55ac5f29ca20_0, 0, 1;
+    %vpi_func/s 3 64 "$sformatf", "FA Sum  (a=%0b,b=%0b,cin=%0b)", v0x55ac5f29ec70_0, v0x55ac5f29eed0_0, v0x55ac5f29f0e0_0 {0 0 0};
+    %store/str v0x55ac5f29cae0_0;
+    %fork TD_tb.check, S_0x55ac5f279c70;
+    %join;
+    %free S_0x55ac5f279c70;
+    %alloc S_0x55ac5f279c70;
+    %load/vec4 v0x55ac5f29f180_0;
+    %store/vec4 v0x55ac5f279e00_0, 0, 1;
+    %load/vec4 v0x55ac5f29ec70_0;
+    %load/vec4 v0x55ac5f29eed0_0;
+    %and;
+    %load/vec4 v0x55ac5f29eed0_0;
+    %load/vec4 v0x55ac5f29f0e0_0;
+    %and;
+    %or;
+    %load/vec4 v0x55ac5f29ec70_0;
+    %load/vec4 v0x55ac5f29f0e0_0;
+    %and;
+    %or;
+    %store/vec4 v0x55ac5f29ca20_0, 0, 1;
+    %vpi_func/s 3 65 "$sformatf", "FA Cout (a=%0b,b=%0b,cin=%0b)", v0x55ac5f29ec70_0, v0x55ac5f29eed0_0, v0x55ac5f29f0e0_0 {0 0 0};
+    %store/str v0x55ac5f29cae0_0;
+    %fork TD_tb.check, S_0x55ac5f279c70;
+    %join;
+    %free S_0x55ac5f279c70;
+    %load/vec4 v0x55ac5f29ee10_0;
+    %addi 1, 0, 32;
+    %cast2;
+    %store/vec4 v0x55ac5f29ee10_0, 0, 32;
+    %jmp T_2.4;
+T_2.5 ;
+    %vpi_call/w 3 68 "$finish" {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "testbench.sv";
+    "design.sv";
